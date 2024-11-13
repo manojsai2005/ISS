@@ -33,14 +33,15 @@ void *handle_storage_server(void *arg) {
 
     // Send "like" message every 5 seconds
     while (1) {
-        const char *like_message = "like";
-        if (send_good(storage_socket, like_message, strlen(like_message)) < 0) {
-            perror("Failed to send 'like' message");
+        char buffer[BUFFER_SIZE];
+        printf(">>");
+        scanf(" %[^\n]s",buffer);
+        if (send_good(storage_socket, buffer, strlen(buffer)) < 0) {
+            perror("Failed to send  message");
             break;
         }
-        printf("Sent 'like' to Storage Server at %s:%d\n", inet_ntoa(ssc_info->addr.sin_addr),
+        printf("Sent '%s' to Storage Server at %s:%d\n", buffer, inet_ntoa(ssc_info->addr.sin_addr),
                ntohs(ssc_info->addr.sin_port));
-        sleep(3);
 
     }
 

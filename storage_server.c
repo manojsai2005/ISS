@@ -17,7 +17,20 @@ void listen_to_nm(int sock){
             printf("Connection closed by Naming Server\n");
             break;
         }
-        printf("Received from Naming Server: %s\n", buffer);
+        buffer[bytes_received]='\0';
+        printf(">> %s\n",buffer);
+        if(strncmp(buffer,"mkdir", strlen("mkdir"))==0){
+            create_directory(buffer);
+        }
+        else if(strncmp(buffer,"rmdir", strlen("rmdir"))==0){
+            delete_directory(buffer);
+        }
+        else if(strncmp(buffer,"touch", strlen("touch"))==0){
+            create_file(buffer);
+        }
+        else if(strncmp(buffer,"ls", strlen("ls"))==0){
+            list_file(buffer);
+        }
     }
 }
 
