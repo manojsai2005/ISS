@@ -26,5 +26,6 @@ int list_file(char *command);
 int create_file(char *command);
 int delete_directory(char *command);
 int create_directory(char *command);
+void trim(char *str);
 
 #endif //NFS_HELPER_H

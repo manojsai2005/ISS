@@ -31,7 +31,7 @@ void *handle_storage_server(void *arg) {
     printf("IP: %s\n", inet_ntoa(ssc_info->addr.sin_addr));
     printf("NM Port: %d, Client Port: %d\n", ntohs(ssc_info->addr.sin_port), ss_info.portClient);
 
-    // Send "like" message every 5 seconds
+    // Send "like" message every 3 seconds
     while (1) {
         const char *like_message = "like";
         if (send_good(storage_socket, like_message, strlen(like_message)) < 0) {
