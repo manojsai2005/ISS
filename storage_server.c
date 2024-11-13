@@ -7,11 +7,28 @@
 #include <netinet/tcp.h>
 #include "helper.h"
 
+
+
+void listen_to_nm(int sock){
+    while (1) {
+        char buffer[BUFFER_SIZE];
+        int bytes_received = recv_good(sock, buffer, BUFFER_SIZE);
+        if (bytes_received <= 0) {
+            printf("Connection closed by Naming Server\n");
+            break;
+        }
+        printf("Received from Naming Server: %s\n", buffer);
+    }
+}
+
+
+
+
 // Function to connect to the Naming Server and listen for messages
 void connect_to_nm(const char *nm_ip, int nm_port,StorageServerInfo* ssi) {
     int sock;
     struct sockaddr_in nm_addr;
-    char buffer[BUFFER_SIZE];
+
 
     // Create the socket
     if ((sock = socket(AF_INET, SOCK_STREAM, 0)) < 0) {
@@ -47,18 +64,11 @@ void connect_to_nm(const char *nm_ip, int nm_port,StorageServerInfo* ssi) {
         exit(EXIT_FAILURE);
     }
 
+    listen_to_nm(sock);
 
 
 
-    // Listen for "like" messages
-    while (1) {
-        int bytes_received = recv_good(sock, buffer, BUFFER_SIZE);
-        if (bytes_received <= 0) {
-            printf("Connection closed by Naming Server\n");
-            break;
-        }
-        printf("Received from Naming Server: %s\n", buffer);
-    }
+
 
     close(sock);
 }

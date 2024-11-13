@@ -10,10 +10,16 @@
 #include <arpa/inet.h>
 #include <pthread.h>
 #include <netinet/tcp.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <sys/stat.h>
+#include <sys/types.h>
+#include <dirent.h>
+#include <unistd.h>
 #include <fcntl.h>  // For fcntl
 #include <errno.h>  // For errno
 #include "helper.h"
-
 
 
 // Modified recv function to handle errors and disconnects
@@ -42,6 +48,106 @@ ssize_t send_good(int sockfd, const void *buf, size_t len) {
         }
     }
     return bytes_sent;
+}
+
+
+// https://chatgpt.com/share/6734fa7e-8ce8-8011-9a03-3cae826783eb for the file/folder handling
+// Helper function to parse command into arguments
+void parse_command(char *command, char **args) {
+    int i = 0;
+    char *token = strtok(command, " ");
+    while (token != NULL) {
+        args[i++] = token;
+        token = strtok(NULL, " ");
+    }
+}
+
+// Create a directory
+int create_directory(char *command) {
+    char *args[3];
+    parse_command(command, args);
+
+    if (args[1] == NULL || args[2] == NULL) {
+        fprintf(stderr, "Invalid command format\n");
+        return -1;
+    }
+
+    char path[256];
+    snprintf(path, sizeof(path), "%s/%s", args[1], args[2]);
+
+    if (mkdir(path, 0777) == -1) {
+        perror("mkdir");
+        return -1;
+    }
+    return 0;
+}
+
+// Delete a directory
+int delete_directory(char *command) {
+    char *args[3];
+    parse_command(command, args);
+
+    if (args[1] == NULL || args[2] == NULL) {
+        fprintf(stderr, "Invalid command format\n");
+        return -1;
+    }
+
+    char path[256];
+    snprintf(path, sizeof(path), "%s/%s", args[1], args[2]);
+
+    if (rmdir(path) == -1) {
+        perror("rmdir");
+        return -1;
+    }
+    return 0;
+}
+
+// Create a file
+int create_file(char *command) {
+    char *args[3];
+    parse_command(command, args);
+
+    if (args[1] == NULL || args[2] == NULL) {
+        fprintf(stderr, "Invalid command format\n");
+        return -1;
+    }
+
+    char path[256];
+    snprintf(path, sizeof(path), "%s/%s", args[1], args[2]);
+
+    FILE *file = fopen(path, "w");
+    if (file == NULL) {
+        perror("fopen");
+        return -1;
+    }
+
+    fclose(file);
+    return 0;
+}
+
+// List files in a directory
+int list_file(char *command) {
+    char *args[2];
+    parse_command(command, args);
+
+    if (args[1] == NULL) {
+        fprintf(stderr, "Invalid command format\n");
+        return -1;
+    }
+
+    DIR *dir = opendir(args[1]);
+    if (dir == NULL) {
+        perror("opendir");
+        return -1;
+    }
+
+    struct dirent *entry;
+    while ((entry = readdir(dir)) != NULL) {
+        printf("%s\n", entry->d_name);
+    }
+
+    closedir(dir);
+    return 0;
 }
 
 

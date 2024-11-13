@@ -22,6 +22,9 @@ typedef struct {
 
 ssize_t recv_good(int sockfd, void *buf, size_t len);
 ssize_t send_good(int sockfd, const void *buf, size_t len);
-
+int list_file(char *command);
+int create_file(char *command);
+int delete_directory(char *command);
+int create_directory(char *command);
 
 #endif //NFS_HELPER_H
