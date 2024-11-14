@@ -64,62 +64,63 @@ void parse_command(char *command, char **args) {
 
 // Create a directory
 int create_directory(char *command) {
-    char *args[3];
+    char *args[2];
     parse_command(command, args);
 
-    if (args[1] == NULL || args[2] == NULL) {
+    if (args[1] == NULL) {
         fprintf(stderr, "Invalid command format\n");
         return -1;
     }
 
-    char path[256];
-    snprintf(path, sizeof(path), "%s/%s", args[1], args[2]);
+    
 
-    if (mkdir(path, 0777) == -1) {
+    if (mkdir(args[1], 0777) == -1) {
+        printf("Could not create folder @ %s\n",args[1]);
         perror("mkdir");
         return -1;
     }
+    printf("Created folder @ %s\n",args[1]);
     return 0;
 }
 
 // Delete a directory
 int delete_directory(char *command) {
-    char *args[3];
+    char *args[2];
     parse_command(command, args);
 
-    if (args[1] == NULL || args[2] == NULL) {
+    if (args[1] == NULL) {
         fprintf(stderr, "Invalid command format\n");
         return -1;
     }
 
-    char path[256];
-    snprintf(path, sizeof(path), "%s/%s", args[1], args[2]);
 
-    if (rmdir(path) == -1) {
+
+    if (rmdir(args[1]) == -1) {
+        printf("Could not delete folder @ %s\n",args[1]);
         perror("rmdir");
         return -1;
     }
+    printf("Deleted folder @ %s\n",args[1]);
     return 0;
 }
 
 // Create a file
 int create_file(char *command) {
-    char *args[3];
+    char *args[2];
     parse_command(command, args);
 
-    if (args[1] == NULL || args[2] == NULL) {
+    if (args[1] == NULL) {
         fprintf(stderr, "Invalid command format\n");
         return -1;
     }
 
-    char path[256];
-    snprintf(path, sizeof(path), "%s/%s", args[1], args[2]);
-
-    FILE *file = fopen(path, "w");
+    FILE *file = fopen(args[1], "w");
     if (file == NULL) {
+        printf("Could not create file @ %s\n",args[1]);
         perror("fopen");
         return -1;
     }
+    printf("Created File @ %s\n",args[1]);
 
     fclose(file);
     return 0;
@@ -137,6 +138,7 @@ int list_file(char *command) {
 
     DIR *dir = opendir(args[1]);
     if (dir == NULL) {
+        printf("Could not list folder @ %s\n",args[1]);
         perror("opendir");
         return -1;
     }

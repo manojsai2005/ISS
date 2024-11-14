@@ -8,6 +8,15 @@
 #include <fcntl.h>  // For fcntl
 #include <errno.h>  // For errno
 #include "helper.h"
+#include <signal.h>
+int server_socket;
+void ctrlCHandler(int sig) {
+    printf("\nCaught signal %d, cleaning up and exiting...\n", sig);
+     close(server_socket);
+    printf("Server socket closed.\n");
+    exit(0);
+}
+
 
 
 void *handle_storage_server(void *arg) {
@@ -36,6 +45,9 @@ void *handle_storage_server(void *arg) {
         char buffer[BUFFER_SIZE];
         printf(">>");
         scanf(" %[^\n]s",buffer);
+        if(strcmp(buffer,"exit")==0){
+            break;
+        }
         if (send_good(storage_socket, buffer, strlen(buffer)) < 0) {
             perror("Failed to send  message");
             break;
@@ -49,9 +61,11 @@ void *handle_storage_server(void *arg) {
     free(ssc_info);
     return NULL;
 }
-
+    
 int main() {
-    int server_socket;
+
+    signal(SIGINT, ctrlCHandler);  // Register the signal handler
+    
     struct sockaddr_in server_addr, storage_addr;
     socklen_t addr_size = sizeof(storage_addr);
 
