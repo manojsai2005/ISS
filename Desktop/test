@@ -1,0 +1,12 @@
+#! /usr/bin/bash
+
+FILEPATH="/home/manoj/Desktop/hell.sh"
+
+if [[ -f $FILEPATH ]]
+then 
+     echo "file exist"
+else      
+     echo "noo"
+fi
+
+

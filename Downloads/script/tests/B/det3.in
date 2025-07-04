@@ -1,0 +1,55 @@
+14
+determinant 1
+tests/B/matrix264.use
+determinant 0
+1 1
+-6 
+determinant 0
+5 5
+-89 -10 73 -45 63 
+-69 96 10 90 64 
+90 0 74 16 82 
+-35 11 -70 79 20 
+31 51 39 -18 63 
+determinant 1
+tests/B/matrix265.use
+determinant 0
+2 2
+100 -58 
+52 48 
+determinant 0
+6 6
+-91 41 -1 96 29 13 
+-43 -96 -31 23 7 -96 
+42 -81 23 4 16 22 
+-95 5 49 40 61 -49 
+34 -56 9 36 -82 25 
+51 94 70 44 -18 -30 
+determinant 1
+tests/B/matrix266.use
+determinant 0
+1 1
+65 
+determinant 0
+5 5
+-89 87 36 48 -11 
+-12 31 23 -24 72 
+97 -99 -11 86 68 
+-92 94 -17 -57 -58 
+57 -98 66 71 -77 
+determinant 1
+tests/B/matrix267.use
+determinant 0
+1 1
+-58 
+determinant 0
+2 2
+-49 -35 
+20 50 
+determinant 1
+tests/B/matrix268.use
+determinant 0
+3 3
+22 42 -100 
+-45 -22 -100 
+-10 70 79 

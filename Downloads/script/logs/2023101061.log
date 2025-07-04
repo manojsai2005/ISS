@@ -1,0 +1,100 @@
+timeout: the monitored command dumped core
+Segmentation fault
+Test case history8.in failed
+timeout: the monitored command dumped core
+Segmentation fault
+Test case mul6.in failed
+Test case smul1.in passed
+Test case all0.in failed
+Test case det2.in failed
+Test case smul3.in passed
+Test case smul6.in passed
+Test case trans7.in passed
+Test case trans4.in passed
+Test case add1.in passed
+Test case trans0.in passed
+Test case add2.in passed
+Test case add8.in passed
+Test case add5.in passed
+Test case trans8.in passed
+Test case smul2.in passed
+Test case trans6.in passed
+Test case trans2.in passed
+Test case smul7.in passed
+Test case smul8.in passed
+Test case trans3.in passed
+Test case trans5.in passed
+Test case smul0.in passed
+Test case add4.in passed
+Test case trans9.in passed
+Test case smul5.in passed
+Test case add3.in passed
+Test case add6.in passed
+Test case add9.in passed
+Test case smul9.in passed
+Test case add7.in passed
+Test case trans1.in passed
+Test case add0.in passed
+Test case smul4.in passed
+timeout: the monitored command dumped core
+Segmentation fault
+Test case mul6.in failed
+timeout: the monitored command dumped core
+Segmentation fault
+Test case smul1.in failed
+timeout: the monitored command dumped core
+Segmentation fault
+Test case all0.in failed
+Test case det2.in failed
+Test case trans7.in passed
+Test case trans7.in passed
+Test case trans7.in passed
+Test case trans7.in passed
+Test case trans7.in passed
+Test case trans7.in passed
+Test case trans7.in passed
+Test case trans4.in passed
+Test case trans4.in passed
+Test case trans4.in passed
+Test case trans4.in passed
+Test case add1.in failed
+Test case trans0.in passed
+Test case trans0.in passed
+Test case trans0.in passed
+Test case trans0.in passed
+Test case trans8.in passed
+Test case trans8.in passed
+Test case trans8.in passed
+Test case trans8.in passed
+Test case trans6.in passed
+Test case trans6.in passed
+Test case trans6.in passed
+Test case trans2.in passed
+Test case trans2.in passed
+Test case trans2.in passed
+Test case trans2.in passed
+Test case trans2.in passed
+Test case trans3.in passed
+Test case trans3.in passed
+Test case trans3.in passed
+Test case trans3.in passed
+Test case trans3.in passed
+Test case trans5.in passed
+Test case trans5.in passed
+Test case trans5.in passed
+Test case trans5.in passed
+Test case trans9.in passed
+Test case trans9.in passed
+Test case trans9.in passed
+Test case trans9.in passed
+Test case trans9.in passed
+Test case trans9.in passed
+Test case trans9.in passed
+Test case trans9.in passed
+Test case trans1.in passed
+Test case trans1.in passed
+Test case trans1.in passed
+Test case trans1.in passed
+Test case trans1.in passed
+Test case trans1.in passed
+Test case trans1.in passed
